@@ -16,7 +16,7 @@ fi
 if [ ! -d $OPENSHIFT_DATA_DIR/jdk1.8.0_71 ]
         then
                 cd $OPENSHIFT_DATA_DIR
-                wget http://download.oracle.com/otn-pub/java/jdk/8u71-b15/jdk-8u71-linux-x64.tar.gz
+                #wget http://download.oracle.com/otn-pub/java/jdk/8u71-b15/jdk-8u71-linux-x64.tar.gz
                 tar xvf *.tar.gz
                 rm -f *.tar.gz
 fi
