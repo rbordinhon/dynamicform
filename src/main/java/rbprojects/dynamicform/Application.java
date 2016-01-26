@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(basePackages = { "rbprojects.controler" })
+@ComponentScan(basePackages = { "rbprojects.dynamicform.controller" })
 @EnableAutoConfiguration
 public class Application {
 	public static void main(String[] args) {
