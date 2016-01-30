@@ -209,7 +209,7 @@ appControllers.controller('DadosFormularioController',['$scope','$routeParams','
 }]);
 
 appControllers.controller('FormController',['$scope','$location','dynaFormAppService', function ($scope,$location,dynaFormAppService) {
-	 $scope.title="Lista Formularios"; 
+	 $scope.title="Lista Formulários"; 
 	 dynaFormAppService.findAll(function(response){
 		 $scope.formularios =  response;  
 		   
@@ -307,7 +307,7 @@ appControllers.controller('CadastroController',['$scope','$routeParams','$locati
 		   },errorCallback($scope));
 	   } else {
 		   $scope.formulario = {title:"", fields:[{label:"",type:""}]};
-		   $scope.title="Novo Formulario";
+		   $scope.title="Novo Formulário";
 	   }
 	   
 	   $scope.adicionarCampo = function(){
@@ -326,6 +326,9 @@ appControllers.controller('CadastroController',['$scope','$routeParams','$locati
 		   $scope.formulario.fields.splice(index,1); 
 	   }
 	   $scope.salvar = function(){
+		   jQuery('*[id*=_Warn]:visible').each(function() {
+			   jQuery(this).text("");
+		   });
 		   if($scope.formulario._id == null){
 			   dynaFormAppService.novoFormulario($scope.formulario,function(response){
 				   $location.path('');

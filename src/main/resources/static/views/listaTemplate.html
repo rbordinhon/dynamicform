@@ -31,7 +31,7 @@
 							<input  id="{{'FormEditar_'+ formulario._id+'_ID'}}"  type="hidden"  name="id" value="{{formulario._id}}"/>
 							<input  id="{{'FormEditar_'+ formulario._id+'_Action'}}" type="hidden"  name="action" value=""/>
 							<button  type="button" class="glyphicon glyphicon-pencil" ng-click="editar(formulario._id)"></button>
-				   		    <button ng-hide="formulario.dataCount > 0" type="button" class="glyphicon glyphicon-plus" ng-click="adicionar(formulario._id)"></button>
+				   		    <button type="button" class="glyphicon glyphicon-plus" ng-click="adicionar(formulario._id)"></button>
 						    <button ng-hide="formulario.dataCount == 0" type="button" class="glyphicon glyphicon-list" ng-click="dadosFormulario(formulario._id,formulario.title)"></button>
 							<button  type="button" class="glyphicon glyphicon-trash" ng-click="excluir($index)"></button>
 				   	
