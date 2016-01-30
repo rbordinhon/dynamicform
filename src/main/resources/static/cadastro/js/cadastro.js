@@ -132,7 +132,7 @@ appControllers.service('dynaFormAppService',['$http',function($http){
 			  url: "/colector/templates/"+formId
 			})
 		        .then(function (response) {
-		        	 findAll(callBack,error);
+		        	 
 		         },function(response){
 		        	 error(response);
 		         });
@@ -192,10 +192,9 @@ appControllers.controller('formController',['$scope','$location','dynaFormAppSer
 	  $scope.adicionar = function(idForm){
 		  $location.path('/adicionar/'+ idForm);
 	  };
-	  $scope.excluir = function(idForm){
-		  alert("Excluir");
-		  dynaFormAppService.deletar(idForm,function(response){
-			  $scope.formularios =  response;
+	  $scope.excluir = function(formulario){
+		  dynaFormAppService.deletar(formlario._id,function(response){
+			  $scope.formularios.remove(formulario);
 		  },errorCallback($scope));
 	  };
 	  
