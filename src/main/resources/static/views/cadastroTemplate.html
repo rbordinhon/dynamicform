@@ -11,7 +11,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="form-group">
-				<label for="Campo_{{$index}}_Label_Input">Título:</label>
+				<label for="Campo_{{$index}}_Label_Input">TÃ­tulo:</label>
 				<h8 style="float:right" class="text-danger" id="Titulo_Warn"></h8>
 				<input id="Campo_Titulo_Input" type="text"
 					ng-model="formulario.title" class="form-control" />
@@ -27,7 +27,7 @@
 						ng-repeat="field in formulario.fields"
 						ng-init="fieldIndex = $index">
 						<div class="form-group">
-							<label for="Campos_{{fieldIndex+1}}_Label_Input">Descrição:</label>
+							<label for="Campos_{{fieldIndex+1}}_Label_Input">DescriÃ§Ã£o:</label>
 							<h8 style="float:right" class="text-danger"
 								id="Campos_{{fieldIndex+1}}_Label_Warn"></h8>
 							<input id="Campos_{{fieldIndex+1}}_Label_Input" type="text"
@@ -79,7 +79,7 @@
 						</div>
 						<div class="form-group">
 							<label for="Campos_{{fieldIndex+1}}_MaxLength_Input">Tamanho
-								Máximo:</label>
+								Mï¿½ximo:</label>
 							<h8 style="float:right" class="text-danger"
 								id="Campo_{{fieldIndex}}_MaxLength_Warn"></h8>
 							<input id="Campo_{{fieldIndex}}_MaxLength_Input" min="0" type="number"
