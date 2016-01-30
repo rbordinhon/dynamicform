@@ -20,16 +20,17 @@ jQuery(function() {
 
 var errorCallback = function(scope){
 	return function(response){
-		alert(response.status);
 		if(response.status == 412){
 			 for (var i = 0; i < response.data.errors.length; i++) {
 				 var errorData = response.data.errors[i];
-				 alert("#"+errorData.category.replace(/\s/g,'_')+"_Warn");
-				 jQuery("#"+errorData.category.replace(/\s/g,'_')+"_Warn").text(errorData.message);
+				 var categoryId = errorData.category.replace(/\s/g,'_');
+				 categoryId = categoryId.replace(/:/g,'_');
+				 jQuery("#"+categoryId+"_Warn").text(errorData.message);
 			 }
+			 jQuery('#modalTitle').text(scope.title);
+		 	 jQuery("#alertMessage").text("Erro na validação");
+			 jQuery("#alert").modal('show');
 		} else {
-			alert(response.status);
-			alert('Erro'+response.data.errors[0].message);
 			jQuery('#modalTitle').text(scope.title);
 			jQuery("#alertMessage").text(response.data.errors[0].message);
 			jQuery("#alert").modal('show');
@@ -58,7 +59,11 @@ dynaFormApp.config(function($routeProvider) {
                 controller  : 'DadosFormularioController'
             })
             .when('/novo', {
-                templateUrl : 'adicionar.html',
+                templateUrl : 'novo.html',
+                controller  : 'NovoController'
+            })
+            .when('/editar/:formId', {
+                templateUrl : 'novo.html',
                 controller  : 'NovoController'
             })
             .otherwise({
@@ -88,6 +93,35 @@ appControllers.service('dynaFormAppService',['$http',function($http){
 		         });
 		
 	}
+	
+	this.novoFormulario = function(dataValue,callBack,error){
+		$http({
+			  method: 'POST',
+			  url: "/colector/templates",
+			  data: dataValue
+			})
+		        .then(function (response) {
+		        	callBack(response.data);
+		         },function(response){
+		        	 error(response);
+		         });
+		
+	}
+	
+	this.atualizaFormulario = function(formId,dataValue,callBack,error){
+		$http({
+			  method: 'PUT',
+			  url: "/colector/templates/"+formId,
+			  data: dataValue
+			})
+		        .then(function (response) {
+		        	callBack(response.data);
+		         },function(response){
+		        	 error(response);
+		         });
+		
+	} 
+	
 	this.findOne = function(formId,callBack,error){
 		$http({
 			  method: 'GET',
@@ -132,7 +166,7 @@ appControllers.service('dynaFormAppService',['$http',function($http){
 			  url: "/colector/templates/"+formId
 			})
 		        .then(function (response) {
-		        	 
+		        	callBack(response.data);
 		         },function(response){
 		        	 error(response);
 		         });
@@ -150,9 +184,9 @@ dynaFormApp.directive("dynamicform",['$compile',"dynaFormAppService", function($
         	 dynaFormAppService.findOne(scope.formId,function(response){
         		 scope.title=response.title; 
         		 scope.formulario =  response;
-	             var fields = scope.formulario.fields;
+        		 var fields = scope.formulario.fields;
 	             for (i = 0; i < fields.length; i++) {
-	   	    		 var functionValue = fieldMethodFactory[fields[i].type];
+	            	 var functionValue = fieldMethodFactory[fields[i].type];
 	   	    		 if(functionValue == null){
 	   	    			 functionValue = fieldMethodFactory['default'];
 	   	    		 }
@@ -192,24 +226,35 @@ appControllers.controller('formController',['$scope','$location','dynaFormAppSer
 	  $scope.adicionar = function(idForm){
 		  $location.path('/adicionar/'+ idForm);
 	  };
-	  $scope.excluir = function(formulario){
-		  dynaFormAppService.deletar(formlario._id,function(response){
-			  $scope.formularios.remove(formulario);
+	  $scope.excluir = function(index){
+		  var formulario = $scope.formularios[index];
+		  dynaFormAppService.deletar(formulario._id,function(response){
+		  $scope.formularios.splice(index,1);
+		  $scope.$apply();
 		  },errorCallback($scope));
 	  };
+	  $scope.novo = function(index){
+		  $location.path('/novo');
+	  };
+	  
+	  $scope.editar = function(idForm){
+		  $location.path('/editar/'+idForm);
+	  };
+	  
+	  
 	  
 	}]);
 
 
 
 
-dynaFormApp.controller('EditarController',['$scope','$routeParams','$location','dynaFormAppService', function ($scope,$routeParams,$location,dynaFormAppService) {
+appControllers.controller('EditarController',['$scope','$routeParams','$location','dynaFormAppService', function ($scope,$routeParams,$location,dynaFormAppService) {
 	
 	$scope.formId=$routeParams.formId;
 	  
 	}]);
 
-dynaFormApp.controller('AdicionarController',['$scope','$routeParams','$location','dynaFormAppService', function ($scope,$routeParams,$location,dynaFormAppService) {
+appControllers.controller('AdicionarController',['$scope','$routeParams','$location','dynaFormAppService', function ($scope,$routeParams,$location,dynaFormAppService) {
 	$scope.formId=$routeParams.formId;  
 	$scope.salvar = function(){
 		var json='{';
@@ -237,7 +282,6 @@ dynaFormApp.controller('AdicionarController',['$scope','$routeParams','$location
 			i++;
 		});
 		json+='}';
-		alert(angular.toJson(json));
 		dynaFormAppService.update($scope.formId,json,function(response){
 			$location.path("/listaFormulario");
 		},errorCallback($scope));
@@ -262,10 +306,47 @@ dynaFormApp.controller('AdicionarController',['$scope','$routeParams','$location
 	   
 	  
 	}]);
-dynaFormApp.controller('NovoController',['$scope','$location','dynaFormAppService', function ($scope,$location,dynaFormAppService) {
-
-	  
-	}]);
+appControllers.controller('NovoController',['$scope','$routeParams','$location','dynaFormAppService', function ($scope,$routeParams,$location,dynaFormAppService) {
+	   
+	   if($routeParams.formId != null){
+		   dynaFormAppService.findOne($routeParams.formId,function(response){
+			   $scope.formulario = response;
+			   $scope.title = response.title;
+		   },errorCallback($scope));
+	   } else {
+		   $scope.formulario = {title:"", fields:[{label:"",type:""}]};
+		   $scope.title="Novo Formulario";
+	   }
+	   
+	   $scope.adicionarCampo = function(){
+		   $scope.formulario.fields.push({label:"",type:""});   
+	   }
+	   $scope.adicionarRadio = function(index){
+		   if($scope.formulario.fields[index].radios == null){
+			   $scope.formulario.fields[index].radios=[]; 
+		   }
+		   $scope.formulario.fields[index].radios.push({label:"",value:""}); 
+	   }
+	   $scope.removerRadio = function(index, radioIndex){
+		   $scope.formulario.fields[index].radios.splice(radioIndex,1); 
+	   }
+	   $scope.removerCampo = function(index){
+		   $scope.formulario.fields.splice(index,1); 
+	   }
+	   $scope.salvar = function(){
+		   if($scope.formulario._id == null){
+			   dynaFormAppService.novoFormulario($scope.formulario,function(response){
+				   $location.path('');
+			   },errorCallback($scope));
+		   } else {
+			   dynaFormAppService.atualizaFormulario($scope.formulario._id,$scope.formulario,function(response){
+				   $location.path('');
+			   },errorCallback($scope));
+		   }
+		   
+	   }
+	   
+}]);
 
 
 

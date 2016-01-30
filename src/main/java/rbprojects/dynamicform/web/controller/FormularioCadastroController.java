@@ -51,7 +51,7 @@ public class FormularioCadastroController {
 	public TemplateDTO buscaFormularioById(@PathVariable(value = "id") String id) throws BussinessException {
 		Template template = service.buscaTemplateById(id);
 		TemplateDTO mappedObj = new TemplateDTO();
-		mappedObj._id = template.getId().toHexString();
+		mappedObj._id = template.getId();
 		mappedObj.fields = template.getFields();
 		mappedObj.title = template.getTitle();
 		mappedObj.data = template.getData();
@@ -73,6 +73,17 @@ public class FormularioCadastroController {
 		return service.buscaDados(id);
 	}
 	
+	
+	@RequestMapping(method = { RequestMethod.POST }, value = "templates")
+	public void novoFormulario(@RequestBody Template formulario) throws BussinessException, ValidationException {
+		service.salvaTemplate(formulario);
+	}
+	
+	@RequestMapping(method = { RequestMethod.PUT }, value = "templates/{id}")
+	public void atualizaFormulario(@RequestBody Template formulario, @PathVariable(value = "id") String id) throws BussinessException, ValidationException {
+		service.atualizaTemplate(id, formulario);
+	}
+	
 	@RequestMapping(method = { RequestMethod.GET }, value = "templates")
 	public TemplateDTO[] buscaFormulario() throws BussinessException, ValidationException {
 		final Template[] template = service.buscaTemplates();
@@ -80,7 +91,7 @@ public class FormularioCadastroController {
 		for (int i = 0; i < returned.length; i++) {
 			final TemplateDTO mappedObj = new TemplateDTO();
 			returned[i] = mappedObj;
-			mappedObj._id = template[i].getId().toHexString();
+			mappedObj._id = template[i].getId();
 			final Field[] fields =template[i].getFields();
 			final FieldInfo[] infos = new FieldInfo[fields.length];
 			mappedObj.fields = infos;

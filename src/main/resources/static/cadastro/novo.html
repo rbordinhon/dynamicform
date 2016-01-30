@@ -1,0 +1,177 @@
+
+<div class="page-header">
+	<h1>{{title}}</h1>
+</div>
+<pre>{{formulario}}</pre>
+<div class="jumbotron">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="form-group">
+				<label for="Campo_{{$index}}_Label_Input">Título:</label>
+				<h8 style="float:right" class="text-danger" id="Titulo_Warn"></h8>
+				<input id="Campo_Titulo_Input" type="text"
+					ng-model="formulario.title" class="form-control" />
+			</div>
+			<div>
+				<div class="panel panel-default">
+					<div style="padding-top: 20px" class="panel-heading">
+						<span style="font-weight: bold">Campos</span>
+					</div>
+
+					<div class="panel-body"
+						ng-style="{'border-bottom': (fieldIndex+1) == formulario.fields.length ? 'none':'1px dashed black'}"
+						ng-repeat="field in formulario.fields"
+						ng-init="fieldIndex = $index">
+						<div class="form-group">
+							<label for="Campos_{{fieldIndex+1}}_Label_Input">Descricao:</label>
+							<h8 style="float:right" class="text-danger"
+								id="Campos_{{fieldIndex+1}}_Label_Warn"></h8>
+							<input id="Campos_{{fieldIndex+1}}_Label_Input" type="text"
+								ng-model="field.label" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label for="Campos_{{fieldIndex+1}}_Tipo_Input">Tipo:</label>
+							<h8 style="float:right" class="text-danger"
+								id="Campos_{{fieldIndex+1}}_Tipo_Warn"></h8>
+							<select ng-model="field.type" class="form-control">
+								<option>text</option>
+								<option>date</option>
+								<option>color</option>
+								<option>datetime</option>
+								<option>datetime-local</option>
+								<option>email</option>
+								<option>mounth</option>
+								<option>number</option>
+								<option>tel</option>
+								<option>time</option>
+								<option>checkbox</option>
+								<option>radio</option>
+							</select>
+						</div>
+						<div class="checkbox" style="margin-bottom: 15px">
+							<h8 style="float:right" class="text-danger"
+								id="Campos_{{fieldIndex+1}}_ReadOnly_Warn"></h8>
+							<label style="font-weight: bold"
+								for="Campo_{{fieldIndex+1}}_ReadOnly_Input"> <input
+								id="Campo_{{fieldIndex+1}}_ReadOnly_Input" type="checkbox"
+								ng-model="field.required"></input> Requerido
+							</label>
+						</div>
+						<div class="checkbox" style="margin-bottom: 15px">
+							<h8 style="float:right" class="text-danger"
+								id="Campos_{{fieldIndex+1}}_Required_Warn"></h8>
+							<label style="font-weight: bold"
+								for="Campo_{{fieldIndex+1}}_Required_Input"> <input
+								id="Campo_{{fieldIndex+1}}_ReadOnly_Input" type="checkbox"
+								ng-model="field.readOnly"></input> ReadOnly
+							</label>
+						</div>
+
+
+
+
+						<div class="form-group">
+							<label for="Campos_{{fieldIndex+1}}_Value_Input">Valor:</label>
+							<h8 style="float:right" class="text-danger"
+								id="Campo_{{fieldIndex+1}}_Value_Warn"></h8>
+							<input id="Campo_{{fieldIndex+1}}_Value_Input" type="text"
+								ng-model="field.value" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label for="Campos_{{fieldIndex+1}}_MaxLength_Input">Tamanho
+								Máximo:</label>
+							<h8 style="float:right" class="text-danger"
+								id="Campo_{{fieldIndex}}_MaxLength_Warn"></h8>
+							<input id="Campo_{{fieldIndex}}_MaxLength_Input" type="text"
+								ng-model="field.maxLength" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label for="Campos_{{fieldIndex+1}}_Placeholder_Input">Placeholder:</label>
+							<h8 style="float:right" class="text-danger"
+								id="Campo_{{fieldIndex}}_Placeholder_Warn"></h8>
+							<input id="Campo_{{fieldIndex}}_Placeholder_Input" type="text"
+								ng-model="field.placeholder" class="form-control" />
+						</div>
+						<h8 class="text-danger"
+								id="Campos_{{fieldIndex+1}}_Valores_Warn"></h8>
+						<div class="panel panel-default">
+							<div style="padding-top: 20px" class="panel-heading">
+								<span style="font-weight: bold">Radios</span>
+							</div>
+							<div>
+								<div
+									ng-style="{'border-bottom': (radioIndex+1) == field.radios.length ? 'none':'1px dashed black'}"
+									ng-repeat="radio in field.radios" ng-init="radioIndex = $index"
+									class="panel-body">
+									<div class="form-group">
+										<label
+											for="Campos_{{fieldIndex+1}}_Valores_{{radioIndex+1}}_Label_Input">Label:</label>
+										<h8 style="float:right" class="text-danger"
+											id="Campos_{{fieldIndex+1}}_Valores_{{radioIndex+1}}_Label_Warn"></h8>
+										<input
+											id="Campos_{{fieldIndex+1}}_Valores_{{radioIndex+1}}_Label_Input"
+											type="text" ng-model="radio.label" class="form-control" />
+									</div>
+									<div class="form-group">
+										<label
+											for="Campos_{{fieldIndex+1}}_Valores_{{radioIndex+1}}_Valor_Input">Valor:</label>
+										<h8 style="float:right" class="text-danger"
+											id="Campos_{{fieldIndex+1}}_Valores_{{radioIndex+1}}_Valor_Warn"></h8>
+										<input
+											id="Campos_{{fieldIndex+1}}_Valores_{{radioIndex+1}}_Valor_Input"
+											type="text" ng-model="radio.value" class="form-control" />
+									</div>
+									<div class="form-group">
+
+										<button class="btn	btn-default form-control"
+											ng-click="removerRadio(fieldIndex,radioIndex)">Remover</button>
+									</div>
+
+								</div>
+								<div class="panel-footer">
+									<div style="padding-right: 0; padding-left: 0"
+										class="container">
+										<div style="float: right">
+
+											<button class="btn btn-default"
+												ng-click="adicionarRadio(fieldIndex)">Adicionar</button>
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+
+
+
+							<div></div>
+
+						</div>
+						<div ng-hide="fieldIndex == 0" class="form-group">
+
+							<button class="btn	btn-default form-control"
+								ng-click="removerCampo(fieldIndex)">Remover</button>
+						</div>
+
+					</div>
+					<div class="panel-footer">
+						<div style="padding-right: 0; padding-left: 0" class="container">
+							<div style="float: right">
+
+								<button style="float: right" class="btn btn-default"
+									ng-click="adicionarCampo()">Adicionar</button>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="pull-right">
+					<button class="btn btn-default" ng-click="salvar()">Salvar</button>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</div>

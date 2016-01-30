@@ -21,12 +21,14 @@ public class Template {
 
 	private Map<String, Object>[] data;
 
-	public ObjectId getId() {
-		return id;
+	public String getId() {
+		return id.toHexString();
 	}
 
-	public void setId(ObjectId id) {
-		this.id = id;
+	public void setId(String id) {
+		if(id != null)
+		this.id = new ObjectId(id);
+		else this.id = null;
 	}
 
 	public String getTitle() {

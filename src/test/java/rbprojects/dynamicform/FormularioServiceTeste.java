@@ -120,7 +120,7 @@ public class FormularioServiceTeste {
 			template.salvaTemplate(temp);
 			Assert.fail("Era esperado um erro de validacao");
 		} catch (ValidationException e) {
-			Assert.assertEquals("A label do campo é obrigatória", e.getErrors()[0].message);
+			Assert.assertEquals("A descrição do campo é obrigatória", e.getErrors()[0].message);
 			Assert.assertEquals("Campos:1:Label", e.getErrors()[0].category);
 			Assert.assertEquals("O tipo do campo e obrigatório", e.getErrors()[1].message);
 			Assert.assertEquals("Campos:1:Tipo", e.getErrors()[1].category);
@@ -147,7 +147,7 @@ public class FormularioServiceTeste {
 			template.salvaTemplate(temp);
 			Assert.fail("Era esperado um erro de validacao");
 		} catch (ValidationException e) {
-			Assert.assertEquals( "A label do valor de um campo do tipo radio é obrigatória",e.getErrors()[0].message);
+			Assert.assertEquals( "A descrição do valor de um campo do tipo radio é obrigatória",e.getErrors()[0].message);
 			Assert.assertEquals("Campos:2:Valores:1:Label", e.getErrors()[0].category);
 			Assert.assertEquals("O valor de um campo tipo radio é obrigatório",e.getErrors()[1].message);
 			Assert.assertEquals("Campos:2:Valores:2:Valor", e.getErrors()[1].category);
@@ -231,12 +231,17 @@ public class FormularioServiceTeste {
 			ErrorMessageDTO[] errors = e.getErrors();
 			Assert.assertEquals("O valor do campo Razao Social é obrigatório", errors[0].message);
 			Assert.assertEquals("Razao Social",errors[0].category);
-			Assert.assertEquals("O campo Telefone deve conter no máximo 13 caracteres", errors[1].message);
-			Assert.assertEquals("Telefone",errors[1].category);
+	
+			Assert.assertEquals("O valor do campo Numero de Filhos é obrigatório", errors[1].message);
+			Assert.assertEquals("Numero de Filhos",errors[1].category);
+			
+			Assert.assertEquals("O campo Telefone deve conter no máximo 13 caracteres", errors[2].message);
+			Assert.assertEquals("Telefone",errors[2].category);
 		
 		}
 		dados.put("Razao Social","RBO industria de Ferramentas LTDA");
 		dados.put("Telefone","12312313312");
+		dados.put("Numero de Filhos","78");
 		template.atualizaDados("56a8cc1ca1971e98f0526df1",dados);
 	}
 
