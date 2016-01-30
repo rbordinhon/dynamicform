@@ -1,5 +1,4 @@
-// Encoding: ISO-8859-1
-
+/*
 jQuery(function() {
     function reposition() {
         var modal =  jQuery(this),
@@ -17,7 +16,7 @@ jQuery(function() {
     	jQuery('.modal:visible').each(reposition);
     });
 });
-
+*/
 var errorCallback = function(scope){
 	return function(response){
 		if(response.status == 412){
@@ -45,30 +44,25 @@ var dynaFormApp = angular.module('dynaFormApp', ['ngRoute','appControllers'])
 dynaFormApp.config(function($routeProvider) {
         $routeProvider
 
-            // route for the home page
-            .when('/editar/:formId', {
-                templateUrl : 'editar.html',
-                controller  : 'EditarController'
-            })
-            .when('/adicionar/:formId', {
-                templateUrl : 'adicionar.html',
+            .when('/dadosFormulario/adicionar/:formId', {
+                templateUrl : 'views/adicionarFormulario.html',
                 controller  : 'AdicionarController'
             })
             .when('/dadosFormulario/:formId/:formTitle', {
-                templateUrl : 'dadosFormulario.html',
+                templateUrl : 'views/dadosFormulario.html',
                 controller  : 'DadosFormularioController'
             })
-            .when('/novo', {
-                templateUrl : 'novo.html',
-                controller  : 'NovoController'
+            .when('/template/novo', {
+                templateUrl : 'views/cadastroTemplate.html',
+                controller  : 'CadastroController'
             })
-            .when('/editar/:formId', {
-                templateUrl : 'novo.html',
-                controller  : 'NovoController'
+            .when('/template/editar/:formId', {
+                templateUrl : 'views/cadastroTemplate.html',
+                controller  : 'CadastroController'
             })
             .otherwise({
-		      templateUrl: 'lista.html',
-		      controller: 'formController'
+		      templateUrl: 'views/listaTemplate.html',
+		      controller: 'FormController'
 		    });
             
 
@@ -207,24 +201,27 @@ appControllers.controller('DadosFormularioController',['$scope','$routeParams','
 		 $scope.formulario =  response;
      },errorCallback($scope));
 	 $scope.adicionar = function(idForm){
-		  $location.path('/adicionar/'+ idForm);
+		  $location.path('/dadosFormulario/adicionar/'+ idForm);
+	 };
+	 $scope.voltar = function(){
+		  $location.path('');
 	 };
 }]);
 
-appControllers.controller('formController',['$scope','$location','dynaFormAppService', function ($scope,$location,dynaFormAppService) {
+appControllers.controller('FormController',['$scope','$location','dynaFormAppService', function ($scope,$location,dynaFormAppService) {
 	 $scope.title="Lista Formularios"; 
 	 dynaFormAppService.findAll(function(response){
 		 $scope.formularios =  response;  
 		   
 	  },errorCallback($scope));
 	  $scope.editar = function(idForm){
-		  $location.path('/editar/'+ idForm);
+		  $location.path('/template/editar/'+ idForm);
 	  };
 	  $scope.dadosFormulario = function(idForm,title){
 		  $location.path('/dadosFormulario/'+ idForm+'/'+title);
 	  };
 	  $scope.adicionar = function(idForm){
-		  $location.path('/adicionar/'+ idForm);
+		  $location.path('/dadosFormulario/adicionar/'+ idForm);
 	  };
 	  $scope.excluir = function(index){
 		  var formulario = $scope.formularios[index];
@@ -234,28 +231,21 @@ appControllers.controller('formController',['$scope','$location','dynaFormAppSer
 		  },errorCallback($scope));
 	  };
 	  $scope.novo = function(index){
-		  $location.path('/novo');
+		  $location.path('/template/novo');
 	  };
 	  
-	  $scope.editar = function(idForm){
-		  $location.path('/editar/'+idForm);
-	  };
-	  
-	  
-	  
-	}]);
-
-
-
-
-appControllers.controller('EditarController',['$scope','$routeParams','$location','dynaFormAppService', function ($scope,$routeParams,$location,dynaFormAppService) {
 	
-	$scope.formId=$routeParams.formId;
+	  
+	  
 	  
 	}]);
 
 appControllers.controller('AdicionarController',['$scope','$routeParams','$location','dynaFormAppService', function ($scope,$routeParams,$location,dynaFormAppService) {
 	$scope.formId=$routeParams.formId;  
+	$scope.voltar = function(){
+	   $location.path('');
+	};
+	
 	$scope.salvar = function(){
 		var json='{';
 		var i = 1;
@@ -283,7 +273,7 @@ appControllers.controller('AdicionarController',['$scope','$routeParams','$locat
 		});
 		json+='}';
 		dynaFormAppService.update($scope.formId,json,function(response){
-			$location.path("/listaFormulario");
+			$location.path("");
 		},errorCallback($scope));
 	}
 	
@@ -306,8 +296,10 @@ appControllers.controller('AdicionarController',['$scope','$routeParams','$locat
 	   
 	  
 	}]);
-appControllers.controller('NovoController',['$scope','$routeParams','$location','dynaFormAppService', function ($scope,$routeParams,$location,dynaFormAppService) {
-	   
+appControllers.controller('CadastroController',['$scope','$routeParams','$location','dynaFormAppService', function ($scope,$routeParams,$location,dynaFormAppService) {
+	    $scope.voltar = function(){
+		   $location.path('');
+		};
 	   if($routeParams.formId != null){
 		   dynaFormAppService.findOne($routeParams.formId,function(response){
 			   $scope.formulario = response;

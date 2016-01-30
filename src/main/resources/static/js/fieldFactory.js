@@ -39,7 +39,7 @@ var FactoryConfig = function(field, $compile, scope, element){
 	 if(config.field.readOnly){
 		 returned += ' readonly';
 	 }
-	 if(config.field.value != null){
+	 if(config.field.value != null ){
 			returned += ' value="'+ config.field.value+'"';
 	 }
 	 if(config.field.placeholder != null){

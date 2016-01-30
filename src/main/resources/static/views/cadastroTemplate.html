@@ -1,8 +1,12 @@
 
 <div class="page-header">
 	<h1>{{title}}</h1>
+   <div class="pull-right">
+			<button type="button" ng-click="voltar()"
+				style="position: relative; top: -40px;" class="btn btn-default">Voltar</button>
+	</div>		
 </div>
-<pre>{{formulario}}</pre>
+
 <div class="jumbotron">
 	<div class="container-fluid">
 		<div class="row">
@@ -23,7 +27,7 @@
 						ng-repeat="field in formulario.fields"
 						ng-init="fieldIndex = $index">
 						<div class="form-group">
-							<label for="Campos_{{fieldIndex+1}}_Label_Input">Descricao:</label>
+							<label for="Campos_{{fieldIndex+1}}_Label_Input">Descrição:</label>
 							<h8 style="float:right" class="text-danger"
 								id="Campos_{{fieldIndex+1}}_Label_Warn"></h8>
 							<input id="Campos_{{fieldIndex+1}}_Label_Input" type="text"
@@ -66,10 +70,6 @@
 								ng-model="field.readOnly"></input> ReadOnly
 							</label>
 						</div>
-
-
-
-
 						<div class="form-group">
 							<label for="Campos_{{fieldIndex+1}}_Value_Input">Valor:</label>
 							<h8 style="float:right" class="text-danger"
@@ -82,7 +82,7 @@
 								Máximo:</label>
 							<h8 style="float:right" class="text-danger"
 								id="Campo_{{fieldIndex}}_MaxLength_Warn"></h8>
-							<input id="Campo_{{fieldIndex}}_MaxLength_Input" type="text"
+							<input id="Campo_{{fieldIndex}}_MaxLength_Input" min="0" type="number"
 								ng-model="field.maxLength" class="form-control" />
 						</div>
 						<div class="form-group">
@@ -124,7 +124,7 @@
 									<div class="form-group">
 
 										<button class="btn	btn-default form-control"
-											ng-click="removerRadio(fieldIndex,radioIndex)">Remover</button>
+											ng-click="removerRadio(fieldIndex,radioIndex)">Remover Radio</button>
 									</div>
 
 								</div>
@@ -134,7 +134,7 @@
 										<div style="float: right">
 
 											<button class="btn btn-default"
-												ng-click="adicionarRadio(fieldIndex)">Adicionar</button>
+												ng-click="adicionarRadio(fieldIndex)">Adicionar Radio</button>
 										</div>
 									</div>
 
@@ -150,7 +150,7 @@
 						<div ng-hide="fieldIndex == 0" class="form-group">
 
 							<button class="btn	btn-default form-control"
-								ng-click="removerCampo(fieldIndex)">Remover</button>
+								ng-click="removerCampo(fieldIndex)">Remover Campo</button>
 						</div>
 
 					</div>
@@ -159,7 +159,7 @@
 							<div style="float: right">
 
 								<button style="float: right" class="btn btn-default"
-									ng-click="adicionarCampo()">Adicionar</button>
+									ng-click="adicionarCampo()">Adicionar Campo</button>
 
 							</div>
 						</div>
@@ -167,7 +167,7 @@
 					</div>
 				</div>
 				<div class="pull-right">
-					<button class="btn btn-default" ng-click="salvar()">Salvar</button>
+					<button class="btn btn-default" ng-click="salvar()">Salvar Formulario</button>
 				</div>
 			</div>
 
