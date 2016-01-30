@@ -1,0 +1,36 @@
+<div class="container">
+		<div class ="row" >
+		<div class="page-header">
+		    <h2  id="cadastoTitle" >{{title}}</h2>
+			<div class="pull-right" > 
+			<form  id="FormNovo" 
+										action="novo">
+							<button type="button" ng-click="adicionar(formId)" style="position: relative;top: -40px;" class="btn btn-default">Novo</button>
+							<!--<button style="heigth:30px" class="btn btn-primary" !-->       
+							
+			</form>
+			</div>
+		</div>
+		</div>
+		<div class ="row" >
+		
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th  ng-repeat="field in formulario.fields">{{field.label}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="data in formulario.data">
+				    <td ng-repeat="field in formulario.fields" >
+				        {{data[field.label]}}
+				    </td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+		<!-- Modal -->
+	
+	</div>
+
+	

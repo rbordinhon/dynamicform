@@ -1,0 +1,166 @@
+[
+{
+  "_id":"56a8cc1ba1971e98f0526df0",
+  "_class": "rbprojects.dynamicform.model.Template",
+  "title": "Formulario Usuario",
+  "fields": [
+    {
+      "label": "Nome",
+      "type": "date",
+      "required": true
+    },
+    {
+      "label": "Email",
+      "type": "email",
+      "required": true,
+      "placeholder": "Joaozinho@gmail.com"
+    
+    },
+    {
+      "label": "Data Aniversario",
+      "type": "date",
+      "required": true
+    },
+	{
+      "label": "Sexo",
+      "type": "radio",
+      "readOnly": true,
+      required: true,
+      "radios": [
+        {
+          "label": "Feminino",
+          "value": "F"
+        },
+        {
+          "label": "Masculino",
+          "value": "M"
+        }
+      ]
+    },
+	{
+      "label": "Telefone",
+      "type": "telefone",
+      "required": false,
+      "readOnly": false,
+      "value": "55",
+      "maxLength": 13
+    }
+  ]
+  
+},
+{
+  "_id":"56a8cc1ca1971e98f0526df1",
+  "_class": "rbprojects.dynamicform.model.Template",
+  "title": "Formulario Empresa Cadastro",
+  "fields": [
+    {
+      "label": "Nome Fantasia",
+      "type": "text",
+      "required": true,
+       "maxLength": 200
+    },
+    {
+      "label": "Razao Social",
+      "type": "text",
+      "required": true
+    },
+    {
+      "label": "CNPJ",
+      "type": "text",
+      "required": true,
+      "placeholder": "282.301.188-92",
+      "maxLength": 16
+    },
+    {
+      "label": "Numero de Filhos",
+      "type": "number",
+      "required": true,
+      "placeholder": "Filhos",
+	  "maxLength": 2
+    },
+    {
+      "label": "Email",
+      "type": "email",
+      "readOnly": true,
+      "required": false,
+      "value":"Rob5@wer",
+      "placeholder": "Joaozinho@gmail.com"
+    
+    },
+     {
+      "label": "Hoje Fui no parque",
+      "type": "checkbox",
+      "readOnly": true,
+      "required": false,
+      "value":"Rob5@wer",
+      "placeholder": "Joaozinho@gmail.com"
+    
+    },
+   	{
+      "label": "Telefone",
+      "type": "tel",
+      "required": true,
+      "readOnly": true,
+      "value": "55",
+      "maxLength": 13
+    }
+  ],
+  "data": [{
+            "Nome Fantasia": "GGConforto",
+            "Razão Social": "ApkDocado",
+            "Telefone": "99999-999",
+            "Email": "email@gmail.com",
+        },
+        {
+            "Nome Fantasia": "PR Artes Graficas",
+            "Razão Social": "PR",
+            "Telefone": "99999-999",
+            "Email": "PROR@gmail.com",
+        }]
+  
+  
+},
+{
+  "_id":"56a8cc1ca1971e98f0526d30",
+  "_class": "rbprojects.dynamicform.model.Template",
+  "title": "Formulario Empresa Remove",
+  "fields": [
+    {
+      "label": "Nome Fantasia",
+      "type": "text",
+      "required": true
+    },
+    {
+      "label": "Razão Social",
+      "type": "text",
+      "required": true
+    },
+    {
+      "label": "Endereco",
+      "type": "text",
+      "required": true
+    },
+    {
+      "label": "CNPJ",
+      "type": "text",
+      "required": true
+    },
+    {
+      "label": "Email",
+      "type": "email",
+      "required": false,
+      "placeHolder": "Joaozinho@gmail.com"
+    
+    },
+   	{
+      "label": "Telefone",
+      "type": "telefone",
+      "required": false,
+      "readOnly": false,
+      "value": "55",
+      "maxLength": 13
+    }
+  ]
+  
+}
+]

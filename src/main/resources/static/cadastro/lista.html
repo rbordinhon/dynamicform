@@ -1,0 +1,45 @@
+<div  ng-controller="formController" class="container">
+		<div class ="row" >
+		<div class="page-header">
+		    <h2  id="cadastoTitle" >{{title}}</h2>
+			<div class="pull-right" > 
+			<form  id="FormNovo" 
+										action="novo">
+							<button type="button" ng-click="novo()" style="position: relative;top: -40px;" class="btn btn-default">Novo</button>
+							<!--<button style="heigth:30px" class="btn btn-primary" !-->       
+							
+			</form>
+			</div>
+		</div>
+		</div>
+		<div class ="row" >
+		
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th>Descricao</th>
+					<th>Registros</th>
+					<th>Ações</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="formulario in formularios">
+					<td width="50%">{{formulario.title}}</td>
+					<td width="40%">{{formulario.dataCount}}</td>
+					<td>
+							<input  id="{{'FormEditar_'+ formulario._id+'_ID'}}"  type="hidden"  name="id" value="{{formulario._id}}"/>
+							<input  id="{{'FormEditar_'+ formulario._id+'_Action'}}" type="hidden"  name="action" value=""/>
+							<button  type="button" class="glyphicon glyphicon-pencil" ng-click="editar(formulario._id)"></button>
+				   		    <button ng-hide="formulario.dataCount > 0" type="button" class="glyphicon glyphicon-plus" ng-click="adicionar(formulario._id)"></button>
+						    <button ng-hide="formulario.dataCount == 0" type="button" class="glyphicon glyphicon-list" ng-click="dadosFormulario(formulario._id,formulario.title)"></button>
+							<button  type="button" class="glyphicon glyphicon-pencil" ng-click="excluir(formulario._id)"></button>
+				   	
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+	</div>
+	
+
+	
