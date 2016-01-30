@@ -3,6 +3,8 @@ package rbprojects.dynamicform.config;
 import java.lang.reflect.Constructor;
 import java.text.MessageFormat;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -20,13 +22,13 @@ import com.mongodb.MongoClientURI;
 import rbprojects.dynamicform.repository.TemplateRepository;
 
 @Configuration
-@EnableMongoRepositories(basePackageClasses= TemplateRepository.class)
+@EnableMongoRepositories(basePackageClasses = TemplateRepository.class)
 @ComponentScan(basePackages = "rbprojects.dynamicform.model")
 public class PersitenceConfigs extends AbstractMongoConfiguration implements ApplicationContextAware {
-
+	private static Logger logger = LoggerFactory.getLogger(PersitenceConfigs.class);
 	@Value("${mongo.db.database:\"\"}")
 	private String mongoDatabase;
-	
+
 	@Value("${server.env:\"\"}")
 	private String ambiente;
 
@@ -45,16 +47,16 @@ public class PersitenceConfigs extends AbstractMongoConfiguration implements App
 	@Override
 	@Bean
 	public Mongo mongo() throws Exception {
-		if(ambiente.equals("teste")){
+		if (ambiente.equals("teste")) {
 			Class fongoClazz = Class.forName("com.github.fakemongo.Fongo");
-			Constructor<Mongo> contruct = fongoClazz.getConstructor(new Class[]{String.class});
+			Constructor<Mongo> contruct = fongoClazz.getConstructor(new Class[] { String.class });
 			Object fongo = contruct.newInstance("Embedded Mongo");
 			return (Mongo) fongoClazz.getMethod("getMongo").invoke(fongo);
 		} else {
-			final String mongoDbUrl = "mongodb://{0}:{1}@{2}:{3}";
-			logger.
-			MongoClientURI uri = new MongoClientURI(
-					MessageFormat.format(mongoDbUrl, mongoUser, mongoPassword, mongoHost, mongoPort));
+			final String mongoDbUrlPattern = "mongodb://{0}:{1}@{2}:{3}";
+			final String mongoDbUrl = MessageFormat.format(mongoDbUrlPattern, mongoUser, mongoPassword, mongoHost, mongoPort);
+			logger.warn("Connectando no mongodb no endereco:"+mongoDbUrl);
+			MongoClientURI uri = new MongoClientURI(mongoDbUrl);
 			return new MongoClient(uri);
 		}
 	}
@@ -64,8 +66,6 @@ public class PersitenceConfigs extends AbstractMongoConfiguration implements App
 		return mongoDatabase;
 	}
 
-	
-
 	@Override
 	public String getMappingBasePackage() {
 		return "rbprojects.dynamicform.repository";
@@ -74,9 +74,7 @@ public class PersitenceConfigs extends AbstractMongoConfiguration implements App
 	@Override
 	public void setApplicationContext(ApplicationContext arg0) throws BeansException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	
-	
 }
