@@ -52,6 +52,7 @@ public class PersitenceConfigs extends AbstractMongoConfiguration implements App
 			return (Mongo) fongoClazz.getMethod("getMongo").invoke(fongo);
 		} else {
 			final String mongoDbUrl = "mongodb://{0}:{1}@{2}:{3}";
+			logger.
 			MongoClientURI uri = new MongoClientURI(
 					MessageFormat.format(mongoDbUrl, mongoUser, mongoPassword, mongoHost, mongoPort));
 			return new MongoClient(uri);
