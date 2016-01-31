@@ -20,11 +20,11 @@
    4. As configurações do banco de dados e do servidor , inicializado nos testes, estão no arquivo "src/test/resources/application-teste.properties"     
    
 ###Execução
-   1. A aplicação está disponível na nuvem,Openshift, através do link http://dynamicform-rbprojects.rhcloud.com/
+   1. A aplicação está disponível na nuvem, OpenShift, através do link http://dynamicform-rbprojects.rhcloud.com/
    2. Podemos executar a aplicação compilando ela e depois executando o comando "java -jar target/dynamicform-0.0.1-SNAPSHOT.jar"
    3. Podemos executar no modo de teste através da classe rbprojects.dynamicform.AppTesteRun
 
-###Acesso ao banco de dados do servidor Openshift
+###Acesso ao banco de dados do servidor OpenShift
     Link: https://dynamicform-rbprojects.rhcloud.com/rockmongo
     Usuário: visitorUser,
     Senha: aapd5942,
