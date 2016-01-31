@@ -14,7 +14,7 @@
    no host "localhost" na porta "8080".
 
 ###Teste
-   1. Os testes unitários estão no pasta "src/test/java/rbprojects/dynamicform".
+   1. Os testes unitários estão na pasta "src/test/java/rbprojects/dynamicform".
    2. Para realização dos testes unitários estou utilizando uma implementação do banco de dados MongoDb, que roda em memória, chamada Fongo.
    3. Os dados de inicialização dos testes unitários são carregados através do arquivo "src/test/resources/data.json".
    4. As configurações do banco de dados e do servidor , inicializado nos testes, estão no arquivo "src/test/resources/application-teste.properties"     
@@ -26,7 +26,7 @@
 
 ###Acesso ao banco de dados do servidor Openshift
     Link: https://dynamicform-rbprojects.rhcloud.com/rockmongo
-    Usuario: visitorUser,
+    Usuário: visitorUser,
     Senha: aapd5942,
     Banco de Dados :dynamicform
 
