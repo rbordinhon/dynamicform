@@ -10,8 +10,8 @@
    6. A IDE utilizada durante o desenvolvimento é o Eclipse.
 
 ###Configuração do Banco de Dados e Host do servidor.
-   1. Para configurar o Banco de Dados MongoDB basta alterar as propriedades ,"mongo.db.*",do arquivo src/main/resources/application.properties.
-   2. Para configurar o Host do servidor basta adicionar os paramêtros "server.host" e "server.port", por padrão o servidor sobe 
+   1. Para configurar o Banco de Dados MongoDB basta alterar as propriedades "mongo.db.*" no arquivo "src/main/resources/application.properties".
+   2. Para configurar o Host do servidor basta adicionar as propriedados "server.host" e "server.port" no arquivo "src/main/resources/application.properties" , por padrão o servidor sobe 
    no Host "localhost" na porta "8080".
 
 ###Teste
