@@ -7,6 +7,7 @@
    3. O container web é Jetty.
    4. Para inicializar o container web e configurar o Banco de Dados,estou utilizando a framework SpringBoot.
    5. Para a implentação "Front-End" , estou utilizando a framework AngularJs com jQuery.    
+   6. A IDE utilizada durante o desenvolvimento é o Eclipse.
 
 ###Configuração do Banco de Dados e Host do servidor.
    1. Para configurar o Banco de Dados MongoDB basta alterar as propriedades ,"mongo.db.*",do arquivo src/main/resources/application.properties.
@@ -14,7 +15,7 @@
    no Host "localhost" na porta "8080".
 
 ###Teste
-   1. Os testes unitários estão na pasta rbprojects.dynamicform.FormularioServiceTeste.
+   1. Os testes unitários estão no pasta "src/test/java/rbprojects/dynamicform".
    2. Para realização dos testes unitários estou utilizando uma implementação do banco de dados MongoDb, que roda em memória, chamada Fongo.
    3. Os dados de inicialização dos testes unitários são carregados através do arquivo "src/test/resources/data.json".
    4. As configurações do banco de dados e do servidor , inicializado nos testes, estão no arquivo "src/test/resources/application-teste.properties"     
