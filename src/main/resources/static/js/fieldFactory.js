@@ -81,7 +81,8 @@ var FactoryConfig = function(field, $compile, scope, element){
 		 if(radios[int].value == config.field.value){
 			 returned +=' checked'
 		 }
-		 returned +'>'+radios[int].label+'</label>\n'
+		 
+		 returned +='>'+radios[int].label+'</label>\n'
 	 }
 	 returned += '</div>\n';
 	 returned += '</div>\n';
