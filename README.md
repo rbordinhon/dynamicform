@@ -11,7 +11,7 @@
 
 ###Configuração do Banco de Dados e Host do servidor.
    1. Para configurar o Banco de Dados MongoDB basta alterar as propriedades "mongo.db.*" no arquivo "src/main/resources/application.properties".
-   2. Para configurar o Host do servidor basta adicionar as propriedados "server.host" e "server.port" no arquivo "src/main/resources/application.properties" , por padrão o servidor sobe 
+   2. Para configurar o Host do servidor basta adicionar as propriedados "server.host" e "server.port" no arquivo "src/main/resources/application.properties", por padrão o servidor sobe 
    no Host "localhost" na porta "8080".
 
 ###Teste
