@@ -77,7 +77,11 @@ var FactoryConfig = function(field, $compile, scope, element){
 		 returned += '<div class="form-control">\n'
 		 
      for (var int = 0; int < radios.length; int++) {
-		 returned += '<label class="radio-inline"><input   type="'+config.field.type+'" name="'+config.field.label+'" value="'+radios[int].value+'">'+radios[int].label+'</label>\n'
+		 returned += '<label class="radio-inline"><input   type="'+config.field.type+'" name="'+config.field.label+'" value="'+radios[int].value+'"';
+		 if(radios[int].value == config.field.value){
+			 returned +=' checked'
+		 }
+		 returned +'>'+radios[int].label+'</label>\n'
 	 }
 	 returned += '</div>\n';
 	 returned += '</div>\n';
