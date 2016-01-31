@@ -8,10 +8,10 @@
    4. Para inicializar o container web e configurar o Banco de Dados,estou utilizando a framework SpringBoot.
    5. Para a implentação "Front-End" , estou utilizando a framework AngularJs com jQuery.    
 
-###Configuração do Banco de Dados e host do servidor.
-   1. Para configurar o banco de dados MongoDB basta alterar as propriedades ,"mongo.db.*",do arquivo src/main/resources/application.properties.
-   2. Para configurar o host do servidor adicionar os paramêtros "server.host" e "server.port", por padrão o servidor sobe 
-   no host localhost porta "8080".
+###Configuração do Banco de Dados e Host do servidor.
+   1. Para configurar o Banco de Dados MongoDB basta alterar as propriedades ,"mongo.db.*",do arquivo src/main/resources/application.properties.
+   2. Para configurar o Host do servidor basta adicionar os paramêtros "server.host" e "server.port", por padrão o servidor sobe 
+   no Host "localhost" na porta "8080".
 
 ###Teste
    1. Os testes unitários estão na pasta rbprojects.dynamicform.FormularioServiceTeste.
