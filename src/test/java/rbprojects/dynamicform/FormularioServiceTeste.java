@@ -38,8 +38,8 @@ import rbprojects.dynamicform.vo.ErrorMessageDTO;
 @EnableAutoConfiguration
 public class FormularioServiceTeste {
 
-	private static final String PELO_MENOS_UM_CAMPO_DO_FORMULARIO_E_OBRIGATÓRIO = "Pelo menos um campo do formulario e obrigatório";
-	private static final String O_VALOR_DO_TÍTULO_E_OBRIGATÓRIO = "O valor do título e obrigatório";
+	private static final String PELO_MENOS_UM_CAMPO_DO_FORMULARIO_E_OBRIGATORIO = "Pelo menos um campo do formulario e obrigatÃ³rio";
+	private static final String O_VALOR_DO_TITULO_E_OBRIGATORIO = "O valor do tÃ­tulo e obrigatÃ³rio";
 	private static ApplicationContext appCtx;
 	private static TemplateService template;
 	private static TemplateRepository repo;
@@ -94,9 +94,9 @@ public class FormularioServiceTeste {
 			Assert.fail("Era esperado um erro de validacao");
 		} catch (ValidationException e) {
 			ErrorMessageDTO[] dto = e.getErrors();
-			Assert.assertEquals(O_VALOR_DO_TÍTULO_E_OBRIGATÓRIO, dto[0].message);
+			Assert.assertEquals(O_VALOR_DO_TITULO_E_OBRIGATORIO, dto[0].message);
 			Assert.assertEquals("Titulo", dto[0].category);
-			Assert.assertEquals(PELO_MENOS_UM_CAMPO_DO_FORMULARIO_E_OBRIGATÓRIO, dto[1].message);
+			Assert.assertEquals(PELO_MENOS_UM_CAMPO_DO_FORMULARIO_E_OBRIGATORIO, dto[1].message);
 			Assert.assertEquals("Campos", dto[1].category);
 		}
 		temp.setTitle("Teste Formulario");
@@ -120,11 +120,11 @@ public class FormularioServiceTeste {
 			template.salvaTemplate(temp);
 			Assert.fail("Era esperado um erro de validacao");
 		} catch (ValidationException e) {
-			Assert.assertEquals("A descrição do campo é obrigatória", e.getErrors()[0].message);
+			Assert.assertEquals("A descriï¿½ï¿½o do campo ï¿½ obrigatï¿½ria", e.getErrors()[0].message);
 			Assert.assertEquals("Campos:1:Label", e.getErrors()[0].category);
-			Assert.assertEquals("O tipo do campo e obrigatório", e.getErrors()[1].message);
+			Assert.assertEquals("O tipo do campo e obrigatï¿½rio", e.getErrors()[1].message);
 			Assert.assertEquals("Campos:1:Tipo", e.getErrors()[1].category);
-			Assert.assertEquals("O tipo do campo e obrigatório", e.getErrors()[2].message);
+			Assert.assertEquals("O tipo do campo e obrigatï¿½rio", e.getErrors()[2].message);
 			Assert.assertEquals("Campos:2:Tipo", e.getErrors()[2].category);
 		
 		}
@@ -135,9 +135,9 @@ public class FormularioServiceTeste {
 			template.salvaTemplate(temp);
 			Assert.fail("Era esperado um erro de validacao");
 		} catch (ValidationException e) {
-			Assert.assertEquals("O tipo do campo e obrigatório", e.getErrors()[0].message);
+			Assert.assertEquals("O tipo do campo e obrigatï¿½rio", e.getErrors()[0].message);
 			Assert.assertEquals("Campos:1:Tipo", e.getErrors()[0].category);
-			Assert.assertEquals("Os valores de um campo do tipo radio é obrigatório", e.getErrors()[1].message);
+			Assert.assertEquals("Os valores de um campo do tipo radio ï¿½ obrigatï¿½rio", e.getErrors()[1].message);
 			Assert.assertEquals("Campos:2:Valores", e.getErrors()[1].category);
 		}
 		field.setType("date");
@@ -147,9 +147,9 @@ public class FormularioServiceTeste {
 			template.salvaTemplate(temp);
 			Assert.fail("Era esperado um erro de validacao");
 		} catch (ValidationException e) {
-			Assert.assertEquals( "A descrição do valor de um campo do tipo radio é obrigatória",e.getErrors()[0].message);
+			Assert.assertEquals( "A descriï¿½ï¿½o do valor de um campo do tipo radio ï¿½ obrigatï¿½ria",e.getErrors()[0].message);
 			Assert.assertEquals("Campos:2:Valores:1:Label", e.getErrors()[0].category);
-			Assert.assertEquals("O valor de um campo tipo radio é obrigatório",e.getErrors()[1].message);
+			Assert.assertEquals("O valor de um campo tipo radio ï¿½ obrigatï¿½rio",e.getErrors()[1].message);
 			Assert.assertEquals("Campos:2:Valores:2:Valor", e.getErrors()[1].category);
 			
 		}
@@ -166,9 +166,9 @@ public class FormularioServiceTeste {
 	public void buscaFormById() throws ValidationException, BussinessException {
 		try {
 			template.buscaTemplateById("56a8cc1ba1971e98f0526d67");
-			Assert.fail("Era esperado a exceção:BussinessException");
+			Assert.fail("Era esperado a exceï¿½ï¿½o:BussinessException");
 		} catch (BussinessException e) {
-			Assert.assertEquals("O template com o id 56a8cc1ba1971e98f0526d67 não foi encontrado",e.getMessage());
+			Assert.assertEquals("O template com o id 56a8cc1ba1971e98f0526d67 nï¿½o foi encontrado",e.getMessage());
 		}
 		Template temp = template.buscaTemplateById("56a8cc1ba1971e98f0526df0");
 		Assert.assertEquals("Formulario Usuario", temp.getTitle());
@@ -196,9 +196,9 @@ public class FormularioServiceTeste {
 		template.removeTemplate("56a8cc1ca1971e98f0526d30");
 		try {
 			template.buscaTemplateById("56a8cc1ca1971e98f0526d30");
-			Assert.fail("Era esperado a exceção:BussinessException");
+			Assert.fail("Era esperado a exceï¿½ï¿½o:BussinessException");
 		} catch (BussinessException e) {
-			Assert.assertEquals("O template com o id 56a8cc1ca1971e98f0526d30 não foi encontrado",e.getMessage());
+			Assert.assertEquals("O template com o id 56a8cc1ca1971e98f0526d30 nï¿½o foi encontrado",e.getMessage());
 		}
 		repo.save(temp);
 	}
@@ -229,13 +229,13 @@ public class FormularioServiceTeste {
 			template.atualizaDados("56a8cc1ca1971e98f0526df1",dados);
 		} catch (ValidationException e) {
 			ErrorMessageDTO[] errors = e.getErrors();
-			Assert.assertEquals("O valor do campo Razao Social é obrigatório", errors[0].message);
+			Assert.assertEquals("O valor do campo Razao Social ï¿½ obrigatï¿½rio", errors[0].message);
 			Assert.assertEquals("Razao Social",errors[0].category);
 	
-			Assert.assertEquals("O valor do campo Numero de Filhos é obrigatório", errors[1].message);
+			Assert.assertEquals("O valor do campo Numero de Filhos ï¿½ obrigatï¿½rio", errors[1].message);
 			Assert.assertEquals("Numero de Filhos",errors[1].category);
 			
-			Assert.assertEquals("O campo Telefone deve conter no máximo 13 caracteres", errors[2].message);
+			Assert.assertEquals("O campo Telefone deve conter no mï¿½ximo 13 caracteres", errors[2].message);
 			Assert.assertEquals("Telefone",errors[2].category);
 		
 		}

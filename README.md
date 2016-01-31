@@ -1,3 +1,33 @@
-The OpenShift `diy` cartridge documentation can be found at:
+#Dynamic Form#
 
-http://openshift.github.io/documentation/oo_cartridge_guide.html#diy 
+###Detalhes da Implementação
+   1. Estou utilizando o banco de dados NoSQL Mongodb 
+   2. Para implentação do servidor Rest, "back-end", 
+   utilizei a framework Spring para fazer a injeção de dependência.
+   3. O container web é Jetty.
+   4. Para inicializar o container web e configurar o Banco de Dados,estou utilizando a framework SpringBoot.
+   5. Para a implentação "Front-End" , estou utilizando a framework AngularJs com jQuery.    
+
+###Configuração do Banco de Dados e host do servidor.
+   1. Para configurar o banco de dados MongoDB basta alterar as propriedades ,"mongo.db.*",do arquivo src/main/resources/application.properties.
+   2. Para configurar o host do servidor adicionar os paramêtros "server.host" e "server.port", por padrão o servidor sobe 
+   no host localhost porta "8080".
+
+###Teste
+   1. Os testes unitários estão na pasta rbprojects.dynamicform.FormularioServiceTeste.
+   2. Para realização dos testes unitários estou utilizando uma implementação do banco de dados MongoDb, que roda em memória, chamada Fongo.
+   3. Os dados de inicialização dos testes unitários são carregados através do arquivo "src/test/resources/data.json".
+   4. As configurações do banco de dados e do servidor , inicializado nos testes, estão no arquivo "src/test/resources/application-teste.properties"     
+   
+###Execução
+   1. A aplicação está disponível na nuvem,Openshift, através do link http://dynamicform-rbprojects.rhcloud.com/
+   2. Podemos executar a aplicação compilando ela e depois executando o comando "java -jar target/dynamicform-0.0.1-SNAPSHOT.jar"
+   3. Execução no modo de teste através da classe rbprojects.dynamicform.AppTesteRun
+
+###Acesso Banco de Dados Openshift
+    Link: https://dynamicform-rbprojects.rhcloud.com/rockmongo
+    Usuario: visitorUser,
+    Senha: aapd5942,
+    Banco de Dados :dynamicform
+
+  
