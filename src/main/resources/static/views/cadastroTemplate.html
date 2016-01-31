@@ -17,15 +17,14 @@
 					ng-model="formulario.title" class="form-control" />
 			</div>
 			<div>
-				<div class="panel panel-default">
-					<div style="padding-top: 20px" class="panel-heading">
-						<span style="font-weight: bold">Campos</span>
+				<div class="panel panel-default" ng-repeat="field in formulario.fields"
+						ng-init="fieldIndex = $index">
+					<div  style="padding-top: 20px" class="panel-heading">
+						<span style="font-weight: bold">{{field.label}}</span>
 					</div>
 
-					<div class="panel-body"
-						ng-style="{'border-bottom': (fieldIndex+1) == formulario.fields.length ? 'none':'1px dashed black'}"
-						ng-repeat="field in formulario.fields"
-						ng-init="fieldIndex = $index">
+					<div class="panel-body">
+						<!-- ng-style="{'border-bottom': (fieldIndex+1) == formulario.fields.length ? 'none':'1px dashed black'}" -->
 						<div class="form-group">
 							<label for="Campos_{{fieldIndex+1}}_Label_Input">Descrição:</label>
 							<h8 style="float:right" class="text-danger"
@@ -147,18 +146,14 @@
 							<div></div>
 
 						</div>
-						<div ng-hide="fieldIndex == 0" class="form-group">
-
-							<button class="btn	btn-default form-control"
-								ng-click="removerCampo(fieldIndex)">Remover Campo</button>
-						</div>
 
 					</div>
-					<div class="panel-footer">
+					<div ng-hide="formulario.fields.length > 1 && fieldIndex == 0"  class="panel-footer">
 						<div style="padding-right: 0; padding-left: 0" class="container">
 							<div style="float: right">
-
-								<button style="float: right" class="btn btn-default"
+								<button ng-hide="fieldIndex == 0" class="btn	btn-default "
+								ng-click="removerCampo(fieldIndex)">Remover Campo</button>		
+								<button ng-hide ="(fieldIndex+1) < formulario.fields.length"  class="btn btn-default"
 									ng-click="adicionarCampo()">Adicionar Campo</button>
 
 							</div>
