@@ -8,10 +8,10 @@
    4. Para a implentação "Front-End", estou utilizando as frameworks AngularJs e jQuery.    
    5. A Ide utilizada durante o desenvolvimento é o Eclipse.
 
-###Configuração do Banco de Dados e Host do servidor.
-   1. Para configurar o Banco de Dados MongoDB basta alterar as propriedades "mongo.db.*" no arquivo "src/main/resources/application.properties".
-   2. Para configurar o Host do servidor basta adicionar as propriedados "server.host" e "server.port" no arquivo "src/main/resources/application.properties", por padrão o servidor sobe 
-   no Host "localhost" na porta "8080".
+###Configuração do banco de dados e host do servidor.
+   1. Para configurar o banco de dados MongoDB basta alterar as propriedades "mongo.db.*" no arquivo "src/main/resources/application.properties".
+   2. Para configurar o host do servidor basta adicionar as propriedados "server.host" e "server.port" no arquivo "src/main/resources/application.properties", por padrão o servidor sobe 
+   no host "localhost" na porta "8080".
 
 ###Teste
    1. Os testes unitários estão no pasta "src/test/java/rbprojects/dynamicform".
@@ -24,7 +24,7 @@
    2. Podemos executar a aplicação compilando ela e depois executando o comando "java -jar target/dynamicform-0.0.1-SNAPSHOT.jar"
    3. Podemos executar no modo de teste através da classe rbprojects.dynamicform.AppTesteRun
 
-###Acesso Banco de Dados Openshift
+###Acesso ao banco de dados do servidor Openshift
     Link: https://dynamicform-rbprojects.rhcloud.com/rockmongo
     Usuario: visitorUser,
     Senha: aapd5942,
