@@ -4,10 +4,9 @@
    1. Estou utilizando o banco de dados NoSQL Mongodb 
    2. Para implentação do servidor Rest, "back-end", 
    utilizei a framework Spring para fazer a injeção de dependência.
-   3. O container web é Jetty.
-   4. Para inicializar o container web e configurar o Banco de Dados,estou utilizando a framework SpringBoot.
-   5. Para a implentação "Front-End" , estou utilizando a framework AngularJs com jQuery.    
-   6. A IDE utilizada durante o desenvolvimento é o Eclipse.
+   3. Para inicializar o container web e configurar o Banco de Dados, estou utilizando a framework SpringBoot.
+   4. Para a implentação "Front-End", estou utilizando as frameworks AngularJs e jQuery.    
+   5. A Ide utilizada durante o desenvolvimento é o Eclipse.
 
 ###Configuração do Banco de Dados e Host do servidor.
    1. Para configurar o Banco de Dados MongoDB basta alterar as propriedades "mongo.db.*" no arquivo "src/main/resources/application.properties".
@@ -23,7 +22,7 @@
 ###Execução
    1. A aplicação está disponível na nuvem,Openshift, através do link http://dynamicform-rbprojects.rhcloud.com/
    2. Podemos executar a aplicação compilando ela e depois executando o comando "java -jar target/dynamicform-0.0.1-SNAPSHOT.jar"
-   3. Execução no modo de teste através da classe rbprojects.dynamicform.AppTesteRun
+   3. Podemos executar no modo de teste através da classe rbprojects.dynamicform.AppTesteRun
 
 ###Acesso Banco de Dados Openshift
     Link: https://dynamicform-rbprojects.rhcloud.com/rockmongo
