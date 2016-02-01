@@ -5,8 +5,9 @@
    2. Para implentação do servidor Rest, "back-end", 
    utilizei a framework Spring para fazer a injeção de dependência.
    3. Para inicializar o container web e configurar o Banco de Dados, estou utilizando a framework SpringBoot.
-   4. Para a implentação "Front-End", estou utilizando as frameworks AngularJs e jQuery.    
-   5. A Ide utilizada durante o desenvolvimento é o Eclipse.
+   4. Para a implentação "Front-End", estou utilizando as frameworks AngularJs e jQuery.
+   5. Os arquivos da implentação "Front-End" estão na pasta "src/main/resources/static".     
+   6. A Ide utilizada durante o desenvolvimento é o Eclipse.
 
 ###Configuração do banco de dados e host do servidor.
    1. Para configurar o banco de dados MongoDB basta alterar as propriedades "mongo.db.*" no arquivo "src/main/resources/application.properties".
