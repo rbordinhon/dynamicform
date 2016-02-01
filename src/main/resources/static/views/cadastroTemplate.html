@@ -20,7 +20,7 @@
 				<div class="panel panel-default" ng-repeat="field in formulario.fields"
 						ng-init="fieldIndex = $index">
 					<div  style="padding-top: 20px" class="panel-heading">
-						<span style="font-weight: bold">{{field.label}}</span>
+						<span style="font-weight: bold">{{field.label == null || field.label.trim() == '' ? 'Campo':field.label}}</span>
 					</div>
 
 					<div class="panel-body">

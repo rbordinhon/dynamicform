@@ -41,7 +41,13 @@ var dynaFormApp = angular.module('dynaFormApp', ['ngRoute','appControllers'])
  
 
 
-dynaFormApp.config(function($routeProvider) {
+dynaFormApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
+	    $httpProvider.defaults.cache = false;
+	    if (!$httpProvider.defaults.headers.get) {
+	      $httpProvider.defaults.headers.get = {};
+	    }
+	    // disable IE ajax request caching
+	    $httpProvider.defaults.headers.get['If-Modified-Since'] = '0';
         $routeProvider
 
             .when('/dadosFormulario/adicionar/:formId', {
@@ -68,9 +74,16 @@ dynaFormApp.config(function($routeProvider) {
 
            
 
-    });
+}]);
 
 var appControllers = angular.module('appControllers', []);
+appControllers.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
+    $httpProvider.defaults.cache = false;
+    if (!$httpProvider.defaults.headers.get) {
+      $httpProvider.defaults.headers.get = {};
+    }
+    $httpProvider.defaults.headers.get['If-Modified-Since'] = '0';
+}]);
 appControllers.service('dynaFormAppService',['$http',function($http){
 	this.alertMessage = function($scope,message){
 		$scope.alertaMensagem=message;
